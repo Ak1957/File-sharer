@@ -7,6 +7,7 @@ from tkinter import filedialog
 from flask import Flask, render_template,request, jsonify,send_file, redirect, url_for
 from flask_restful import Resource, Api
 import subprocess
+import tempfile
 
 application = Flask(__name__)
 api =Api(application)
@@ -59,6 +60,9 @@ def sendfile():
 
 @application.route("/upload", methods=["POST"])
 def upload():
+    if not os.path.isdir("static/temp"):
+        os.mkdir("static/temp")
+    tempfile.tempdir = "static/temp"
     """Handle the upload of a file."""
     form = request.form
 
@@ -111,7 +115,7 @@ def upload_complete(uuid):
     for file in glob.glob("{}/*.*".format(root)):
         fname = file.split(os.sep)[-1]
         files.append(fname)
-
+    tempfile.tempdir = temploc
     return render_template("success.html")
 
 
@@ -162,6 +166,7 @@ def home():
     return render_template('tempcopy.html')
 
 if __name__ == '__main__':
+    temploc = tempfile.gettempdir()
     root = tk.Tk()
     fileslist = []
     filez = filedialog.askopenfilenames(initialdir = os.path.join(os.environ["HOMEPATH"], "Desktop"),title = "Select file to transfer")
