@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <style>
+    .linkButton { 
+         background: none;
+         border: none;
+         color: #0066ff;
+         text-decoration: underline;
+         cursor: pointer; 
+    }
+    </style>
+    </head>
+    <body>
+        <div>
+        <form action="/sendfile"  method="post">
+          <input  type="hidden" name="filename" value="C:/Users/AYUSH KUMAR/Downloads/Video/w0ndr woomn Porn - SpankBang_2.mp4">
+        <input type="submit" class="linkButton" value="w0ndr woomn Porn - SpankBang_2.mp4"/>
+        </form> 
+        </div>
+        
+<div>
+<form id="upload-form" action="/upload" method="POST" enctype="multipart/form-data">
+    <strong>Files:</strong><br>
+    Select files OR drag them into the box below.
+    <input id="file-picker" type="file" name="file" accept="*" multiple><p>
+
+    <div id="dropbox">
+        Drag and Drop Files Here
+    </div><p>
+
+    <fieldset id="progress" style="display: none">
+        <legend>Files Progress</legend>
+
+        <div class="progress-trough">
+            <div id="progress-bar" class="progress-bar">0%</div>
+        </div>
+    </fieldset><p>
+
+    <input type="submit" value="Upload!" id="upload-button">
+</form>
+</div>
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-2.1.1.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/uploadr.js') }}"></script>
